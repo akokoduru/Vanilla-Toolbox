@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Score Keeper</title>
+</head>
+<body>
+    <div class="main-container">
+        <!-- <div class="image-container">
+            <img src="img/tennis.png" alt="Tennis" class="tennis-pic">
+        </div> -->
+        <img src="img/tennis.png" alt="Tennis" class="tennis-pic">
+        <div class="title-container">
+            <p><b>Tennis Score Keeper</b></p>
+        </div>
+        <div class="sub-container">
+            <p id="score-board"><span id="p-one-score">0</span> to <span id="p-two-score">0</span></p>
+            <p>Use the buttons below to keep score.</p>
+            <div>
+                <p class="limit-copy"><b>Playing To</b></p>
+                <select id="limit-select">
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+        <div class="button-container">
+            <button id="p-one-btn">+1 Player One</button>
+            <button id="p-two-btn">+1 Player Two</button>
+            <button id="reset-btn">Reset</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
