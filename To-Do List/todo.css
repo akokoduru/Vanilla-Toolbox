@@ -1,0 +1,62 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(140deg, rgb(222, 184, 88), rgb(133, 91, 13));
+    padding: 1em;
+}
+
+
+.to-do-container{
+    width: 100%;
+    max-width: 540px;
+    background: white;
+    margin: 10em auto 1em;
+    padding: 1em;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    border-radius: 10px;
+    
+} 
+
+.input{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #edeef0;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+input{
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+}
+
+.input button{
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    background: rgb(188, 142, 56);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+ul li{
+    list-style: none;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    
+}

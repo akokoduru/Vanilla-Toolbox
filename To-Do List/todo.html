@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css">
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="container">
+        <div class="to-do-container">
+            <!-- Title -->
+            <h2>List of Grit</h2>
+                
+            <br>
+            
+    
+            <!-- Input -->
+            <div class="input">
+                <input type="text" id="todo-input" name="to-do" required minlength="4" maxlength="20" size="30" placeholder="Add your to-do here!" />
+                <button id="todo-btn">Add</button>
+                <p id="input-error"></p>
+            </div>
+
+            <br>
+            <!-- List -->
+            <div class="list">
+                <ul id="list">
+                    <li>Task 1</li>
+                    <li>Task 2</li>
+                    <li>Task 3</li>
+                </ul>
+            </div>
+
+    
+        </div>        
+    </div>
+    <script src="todo.js"></script>
+</body>
+</html>
