@@ -5,37 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="todo.css">
-    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <title>Akoko To-Do</title>
 </head>
 <body>
     <div class="container">
         <div class="to-do-container">
             <!-- Title -->
-            <h2>List of Grit</h2>
-                
-            <br>
+            <h2>Gritty List</h2>
             
+            <br>
     
             <!-- Input -->
             <div class="input">
-                <input type="text" id="todo-input" name="to-do" required minlength="4" maxlength="20" size="30" placeholder="Add your to-do here!" />
+                <input type="text" id="todo-input" name="to-do" required minlength="4" maxlength="50" size="30" placeholder="Add your to-do here!" />
                 <button id="todo-btn">Add</button>
-                <p id="input-error"></p>
             </div>
+
+            <p id="input-error"></p>
 
             <br>
             <!-- List -->
             <div class="list">
-                <ul id="list">
-                    <li>Task 1</li>
-                    <li>Task 2</li>
-                    <li>Task 3</li>
+                <ul id="todo-list">
                 </ul>
             </div>
-
-    
         </div>        
+
+        <div class="completed-container">
+            <!-- Title -->
+            <h2>Completed</h2>
+            <br>
+            <!-- List -->
+            <div class="list">
+                <ul id="completed-list">
+                </ul>
+            </div>
+        </div>
+
     </div>
     <script src="todo.js"></script>
 </body>
 </html>
+
+<!--
+TO-DO:
+- fix bug where clicking 'text' will move the item to the completed list..
+- the items in completed list should not have the hover effect.
+- Make the two containers responsive
+
+- Add date for Completed list.
+-->
