@@ -99,7 +99,7 @@ ul li span {
     margin-right: 25px;
 }
 
-ul li:hover {
+ul#todo-list li:hover {
     background-color: #25eb1737;
 }
 

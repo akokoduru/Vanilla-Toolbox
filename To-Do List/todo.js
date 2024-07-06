@@ -22,6 +22,11 @@ function createToDoItem(text) {
     });
     newLi.appendChild(deleteBtn);
 
+    // newLi.addEventListener('click', function() {
+    //     newLi.remove();
+    //     completedList.appendChild(newLi);
+    // });
+
     return newLi;
 }
 
@@ -52,13 +57,25 @@ input.addEventListener('click', function(){
     error.innerText = '';
 })
 
-// Remove item when clicked
 list.addEventListener('click', function(event) {
-    if (event.target && (event.target.nodeName === 'LI' || event.target.nodeName === 'SPAN')) {
-        event.target.remove(); // Remove the clicked item
-        const liTest = event.target.nodeName === 'LI' ? event.target : event.target.closest('li');
-        if (liTest) {
-            completedList.appendChild(liTest);
+    const target = event.target;
+    if (target && (target.nodeName === 'LI' || target.nodeName === 'SPAN')) {
+        const li = target.closest('li');
+        if (li) {
+            li.classList.remove('todo-item'); // Remove class to prevent hover effect
+            completedList.appendChild(li);
         }
     }
 });
+
+
+// // Remove item when clicked
+// list.addEventListener('click', function(event) {
+//     if (event.target && (event.target.nodeName === 'LI' || event.target.nodeName === 'SPAN')) {
+//         event.target.remove(); // Remove the clicked item
+//         const liTest = event.target.nodeName === 'LI' ? event.target : event.target.closest('li');
+//         if (liTest) {
+//             completedList.appendChild(liTest);
+//         }
+//     }
+// });
