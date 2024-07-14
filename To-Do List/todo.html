@@ -11,13 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-    <title>Akoko To-Do</title>
+    <title>Vanilla To-Do</title>
 </head>
 <body>
     <div class="container">
         <div class="to-do-container">
             <!-- Title -->
-            <h2>Gritty List</h2>
+            <h2>Vanilla To-Do</h2>
             
             <br>
     
@@ -35,6 +35,9 @@
                 <ul id="todo-list">
                 </ul>
             </div>
+            <div class="delete-container">
+                <button id="delete-all-todo" style="display: none;">Delete All</button>
+            </div>
         </div>        
 
         <div class="completed-container">
@@ -43,21 +46,32 @@
             <br>
             <!-- List -->
             <div class="list">
+                <p id="no-completed-tasks">No task has been completed yet</p>
                 <ul id="completed-list">
                 </ul>
             </div>
+            <div class="delete-container">
+                <button id="delete-all-completed" style="display: none;">Delete All</button>
+            </div>
         </div>
-
     </div>
+
+    <!-- Warning Modal -->
+    <div id="warning-modal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure that you want to delete all items in the list?</p>
+            <button id="confirm-delete">Yes</button>
+            <button id="cancel-delete">No</button>
+        </div>
+    </div>
+    
     <script src="todo.js"></script>
 </body>
 </html>
 
 <!--
 TO-DO:
-- fix bug where clicking 'text' will move the item to the completed list..
-- the items in completed list should not have the hover effect.
-- Make the two containers responsive
+- Make the two containers responsive (make it so that when completed container is at the bottom, it is closer to the todo list.)
 
 - Add date for Completed list.
 -->
