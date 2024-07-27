@@ -1,3 +1,4 @@
+// Main Selectors
 const list = document.querySelector("#todo-list");
 const completedList = document.querySelector("#completed-list");
 const input = document.querySelector("#todo-input");
@@ -8,13 +9,20 @@ const noCompletedTasksMessage = document.querySelector("#no-completed-tasks");
 const deleteAllTodoBtn = document.querySelector("#delete-all-todo");
 const deleteAllCompletedBtn = document.querySelector("#delete-all-completed");
 
-// Modal selectors
+// Date Selectors
+const today = new Date();
+const year = today.getFullYear();
+const month = today.getMonth() + 1; // Months are zero-based, so add 1
+const day = today.getDate();
+const formattedDate = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+
+// Confirmation Modal Selectors
 const modal = document.querySelector("#warning-modal");
 const confirmDeleteBtn = document.querySelector("#confirm-delete");
 const cancelDeleteBtn = document.querySelector("#cancel-delete");
 
 // Function to create a To-Do component
-function createToDoItem(text) {
+function createToDoItem(text, date) {
     // Create list item
     const newLi = document.createElement('li');
 
@@ -35,14 +43,15 @@ function createToDoItem(text) {
         newLi.remove();
         updateLocalStorage();
         toggleNoCompletedTasksMessage();
-        toggleButtonsVisibility();
+        toggleDeleteAllVisibility();
     });
     newLi.appendChild(deleteBtn);
 
     return newLi;
 }
 
-function toggleButtonsVisibility() {
+function toggleDeleteAllVisibility() {
+    // 'Delete All' button should only show when there is 1+ items in the lists
     if (list.children.length > 0) {
         deleteAllTodoBtn.style.display = 'block';
     } else {
@@ -56,39 +65,6 @@ function toggleButtonsVisibility() {
     }
 }
 
-// Function to update localStorage with current state of to-do and completed lists
-function updateLocalStorage() {
-    const todoItems = [];
-    const completedItems = [];
-
-    list.querySelectorAll('li').forEach(li => {
-        todoItems.push(li.querySelector('span').innerText);
-    });
-
-    completedList.querySelectorAll('li').forEach(li => {
-        completedItems.push(li.querySelector('span').innerText);
-    });
-
-    localStorage.setItem('todoItems', JSON.stringify(todoItems));
-    localStorage.setItem('completedItems', JSON.stringify(completedItems));
-}
-
-// Function to load data from localStorage
-function loadFromLocalStorage() {
-    const todoItems = JSON.parse(localStorage.getItem('todoItems')) || [];
-    const completedItems = JSON.parse(localStorage.getItem('completedItems')) || [];
-
-    todoItems.forEach(item => {
-        list.appendChild(createToDoItem(item));
-    });
-
-    completedItems.forEach(item => {
-        completedList.appendChild(createToDoItem(item));
-    });
-    toggleNoCompletedTasksMessage();
-    toggleButtonsVisibility();
-}
-
 addBtn.addEventListener('click', function(){
     if (input.value.trim() !== '') {
         // Add the todo item
@@ -99,7 +75,7 @@ addBtn.addEventListener('click', function(){
         error.innerText = '';
 
         updateLocalStorage();    
-        toggleButtonsVisibility();
+        toggleDeleteAllVisibility();
     }
     else {
         // Display error
@@ -126,9 +102,10 @@ list.addEventListener('click', function(event) {
         if (li) {
             li.classList.remove('todo-item'); // Remove class to prevent hover effect
             completedList.appendChild(li);
+
             updateLocalStorage();
             toggleNoCompletedTasksMessage();
-            toggleButtonsVisibility();
+            toggleDeleteAllVisibility();
         }
     }
 });
@@ -159,7 +136,7 @@ confirmDeleteBtn.addEventListener('click', function() {
         toggleNoCompletedTasksMessage();
     }
     updateLocalStorage();
-    toggleButtonsVisibility();
+    toggleDeleteAllVisibility();
     closeModal();
 });
 
@@ -173,6 +150,39 @@ function showModal() {
 
 function closeModal() {
     modal.style.display = 'none';
+}
+
+// Function to update localStorage with current state of to-do and completed lists
+function updateLocalStorage() {
+    const todoItems = [];
+    const completedItems = [];
+
+    list.querySelectorAll('li').forEach(li => {
+        todoItems.push(li.querySelector('span').innerText);
+    });
+
+    completedList.querySelectorAll('li').forEach(li => {
+        completedItems.push(li.querySelector('span').innerText);
+    });
+
+    localStorage.setItem('todoItems', JSON.stringify(todoItems));
+    localStorage.setItem('completedItems', JSON.stringify(completedItems));
+}
+
+// Function to load data from localStorage
+function loadFromLocalStorage() {
+    const todoItems = JSON.parse(localStorage.getItem('todoItems')) || [];
+    const completedItems = JSON.parse(localStorage.getItem('completedItems')) || [];
+
+    todoItems.forEach(item => {
+        list.appendChild(createToDoItem(item));
+    });
+    completedItems.forEach(item => {
+        completedList.appendChild(createToDoItem(item));
+    });
+
+    toggleNoCompletedTasksMessage();
+    toggleDeleteAllVisibility();
 }
 
 // Load data from localStorage when the page loads
