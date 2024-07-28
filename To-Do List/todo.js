@@ -4,7 +4,6 @@ const completedList = document.querySelector("#completed-list");
 const input = document.querySelector("#todo-input");
 const addBtn = document.querySelector("#todo-btn");
 const error = document.querySelector("#input-error");
-const deleteBtn = document.querySelector(".delete");
 const noCompletedTasksMessage = document.querySelector("#no-completed-tasks");
 const deleteAllTodoBtn = document.querySelector("#delete-all-todo");
 const deleteAllCompletedBtn = document.querySelector("#delete-all-completed");
@@ -41,11 +40,17 @@ function createToDoItem(text, date) {
     deleteBtn.addEventListener('click', function(event) {
         event.stopPropagation();
         newLi.remove();
+        const parentDate = newLi.getAttribute('data-date');
+        checkAndRemoveEmptyDateSpan(parentDate);
         updateLocalStorage();
         toggleNoCompletedTasksMessage();
         toggleDeleteAllVisibility();
     });
     newLi.appendChild(deleteBtn);
+
+    if (date) {
+        newLi.setAttribute('data-date', date);
+    }
 
     return newLi;
 }
@@ -101,7 +106,31 @@ list.addEventListener('click', function(event) {
         const li = target.closest('li');
         if (li) {
             li.classList.remove('todo-item'); // Remove class to prevent hover effect
-            completedList.appendChild(li);
+            
+            // Add date attribute to the item
+            if (!li.getAttribute('data-date')) {
+                li.setAttribute('data-date', formattedDate);
+            }
+
+            // Check if date is already in the completed list
+            const existingDateLi = Array.from(completedList.children).find(
+                child => child.querySelector('span') && child.querySelector('span').innerText === formattedDate
+            );
+
+            if (!existingDateLi) {
+                // Add date span in the completed list
+                const dateLi = document.createElement('li');
+                const dateSpan = document.createElement('span');
+                dateSpan.innerText = formattedDate;
+                dateLi.appendChild(dateSpan);
+                dateLi.classList.add('center-date');
+                completedList.appendChild(dateLi);
+                // Add item under the date
+                completedList.appendChild(li);
+            }
+            else {
+                completedList.appendChild(li);
+            }
 
             updateLocalStorage();
             toggleNoCompletedTasksMessage();
@@ -117,6 +146,26 @@ function toggleNoCompletedTasksMessage() {
         noCompletedTasksMessage.style.display = 'none';
     }
 }
+
+function checkAndRemoveEmptyDateSpan(date) {
+    const itemsUnderDate = Array.from(completedList.children).filter(
+        item => item.getAttribute('data-date') === date
+    );
+
+    if (itemsUnderDate.length === 0) {
+        const dateLi = Array.from(completedList.children).find(
+            item => item.querySelector('span') && item.querySelector('span').innerText === date
+        );
+
+        if (dateLi) {
+            dateLi.remove();
+        }
+    }
+}
+
+/* -------------------------------
+'Delete All' button click events 
+------------------------------- */
 
 deleteAllTodoBtn.addEventListener('click', function() {
     deleteTarget = 'todo';
@@ -152,17 +201,26 @@ function closeModal() {
     modal.style.display = 'none';
 }
 
+/* -------------------------------
+Local Storage Handlers
+------------------------------- */
+
 // Function to update localStorage with current state of to-do and completed lists
 function updateLocalStorage() {
     const todoItems = [];
-    const completedItems = [];
+    const completedItems = {};
 
     list.querySelectorAll('li').forEach(li => {
         todoItems.push(li.querySelector('span').innerText);
     });
 
-    completedList.querySelectorAll('li').forEach(li => {
-        completedItems.push(li.querySelector('span').innerText);
+    completedList.querySelectorAll('li[data-date]').forEach(li => {
+        const date = li.getAttribute('data-date');
+        const text = li.querySelector('span').innerText;
+        if (!completedItems[date]) {
+            completedItems[date] = [];
+        }
+        completedItems[date].push(text);
     });
 
     localStorage.setItem('todoItems', JSON.stringify(todoItems));
@@ -172,14 +230,24 @@ function updateLocalStorage() {
 // Function to load data from localStorage
 function loadFromLocalStorage() {
     const todoItems = JSON.parse(localStorage.getItem('todoItems')) || [];
-    const completedItems = JSON.parse(localStorage.getItem('completedItems')) || [];
+    const completedItems = JSON.parse(localStorage.getItem('completedItems')) || {};
 
     todoItems.forEach(item => {
         list.appendChild(createToDoItem(item));
     });
-    completedItems.forEach(item => {
-        completedList.appendChild(createToDoItem(item));
-    });
+
+    for (const date in completedItems) {  
+        const dateLi = document.createElement('li');
+        const dateSpan = document.createElement('span');
+        dateSpan.innerText = date;
+        dateLi.appendChild(dateSpan);
+        dateLi.classList.add('center-date');
+        completedList.appendChild(dateLi);
+
+        completedItems[date].forEach(text => {
+            completedList.appendChild(createToDoItem(text, date));
+        });
+    }
 
     toggleNoCompletedTasksMessage();
     toggleDeleteAllVisibility();

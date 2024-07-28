@@ -204,3 +204,10 @@ button#delete-all-completed:hover {
 .modal-content button:hover {
     background-color: #25eb1737;
 }
+
+
+/* to center date span */
+.center-date {
+    text-align: center;
+    font-weight: bold;
+}
