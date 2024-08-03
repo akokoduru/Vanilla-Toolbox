@@ -1,0 +1,146 @@
+* {
+    background-color: black;
+    font-weight: 400;
+    font-family: "Courier Prime", monospace;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Home Icon Button --- */
+.home-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5em;
+    color: #25eb17;
+    text-decoration: none;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.home-icon:hover {
+    color: #1b8b12; /* Slightly darker green on hover */
+}
+
+/* -------------------------- */
+
+p, h2 {
+    color: #25eb17;
+}
+
+p, button, select {
+    margin : 3px;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.main-container {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin: 3em auto;
+    padding: 18px;
+    outline: 1px solid rgba(194, 194, 194, 0.1);
+    box-shadow: 0 0 3px rgba(135, 134, 134, 0.4);
+    background-color: black;
+    outline: 3px solid #25eb17;
+    border-radius: 10px;
+    min-width: 320px;
+}
+
+.sub-container {
+    text-align: left;
+    margin: 0.2em;
+}
+
+.sub-container p {
+    font-size: 0.6em;
+}
+
+.score-container {
+    margin: 10px;
+    padding: 5px;
+    outline: 1px solid #25eb17;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#score-board {
+    font-size : 120%;
+}
+
+.limit-copy {
+    display: inline;
+}
+
+/* BUTTONS */
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 4px 4px 4px;
+}
+
+button {
+    border: none;
+    color: #25eb17;
+    padding: 6px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.4em;
+    border-radius: 0.2em;
+    flex: 1;
+    margin: 0;
+    cursor: pointer;
+    font-family: "Courier Prime", monospace;
+}
+
+button:hover {
+    background-color: #25eb1737;
+}
+
+#p-one-btn {
+    outline: 1.5px solid #25eb17;
+}
+
+#p-two-btn{
+    outline: 1.5px solid #25eb17;
+}
+
+#reset-btn{
+    outline: 1.5px solid #25eb17;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; /* Removes the default styling */
+    width: 10%;
+    border: 1px solid #25eb17;
+    border-radius: 5px;
+    background: black; /* Changes the background color */
+    color: #25eb17; /* Changes the text color */
+    box-shadow: 0 1px 3px -2px #25eb17;
+    cursor: pointer;
+    font-family: "Courier Prime", monospace;
+    font-size: 0.7em;
+    transition: all 150ms ease;
+    padding: 4px; /* Add padding for better spacing */
+}
+
+select:hover {
+    background-color: #25eb1737;
+}
+
+/* Optional: For more consistent appearance across browsers */
+select option {
+    background: black; /* Ensures options have a black background */
+    color: #25eb17; /* Ensures options text is green */
+}
+

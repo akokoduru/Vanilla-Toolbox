@@ -1,0 +1,89 @@
+body {
+    background-color: black;
+    font-family: "Courier Prime", monospace;
+    color: #25eb17;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.button-container {
+    display: flex;
+    gap: 2em;
+}
+
+.tool-button {
+    background-color: black;
+    color: #25eb17;
+    border: 2px solid #25eb17;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tool-button-coming-soon {
+    background-color: #19191993;
+    color: #25eb17;
+    border: 2px solid #25eb17;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-style: italic;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tool-button:hover {
+    background-color: #25eb1737;
+}
+
+.tool-button-coming-soon:hover {
+    background-color: #25eb1737;
+}
+
+/* Dot Animation */
+.tool-button-coming-soon:hover::after {
+    content: ' Coming Soon' attr(data-dots);
+    animation: dot-animation 1.5s steps(4) infinite;
+}
+
+/* Keyframes for dot animation */
+@keyframes dot-animation {
+    0% {
+        content: ' .';
+    }
+    50% {
+        content: ' ..';
+    }
+    100% {
+        content: ' ...';
+    }
+}
+
+.version-text {
+    font-size: 0.8em;
+    color: #25eb17;
+    margin-top: 1em;
+}

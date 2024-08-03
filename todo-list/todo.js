@@ -30,7 +30,18 @@ function createToDoItem(text, date) {
     span.innerText = text;
     newLi.appendChild(span);
 
-    // Dynamically create delete button
+    const deleteBtn = createDeleteButton(newLi);
+    newLi.appendChild(deleteBtn); 
+
+    if (date) {
+        newLi.setAttribute('data-date', date);
+    }
+
+    return newLi;
+}
+
+// Dynamically Create Delete Button 
+function createDeleteButton(parentLi) {
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete';
     const trashIcon = document.createElement('i');
@@ -39,20 +50,15 @@ function createToDoItem(text, date) {
 
     deleteBtn.addEventListener('click', function(event) {
         event.stopPropagation();
-        newLi.remove();
-        const parentDate = newLi.getAttribute('data-date');
+        parentLi.remove();
+        const parentDate = parentLi.getAttribute('data-date');
         checkAndRemoveEmptyDateSpan(parentDate);
         updateLocalStorage();
         toggleNoCompletedTasksMessage();
         toggleDeleteAllVisibility();
     });
-    newLi.appendChild(deleteBtn);
 
-    if (date) {
-        newLi.setAttribute('data-date', date);
-    }
-
-    return newLi;
+    return deleteBtn;
 }
 
 function toggleDeleteAllVisibility() {
@@ -67,6 +73,30 @@ function toggleDeleteAllVisibility() {
         deleteAllCompletedBtn.style.display = 'block';
     } else {
         deleteAllCompletedBtn.style.display = 'none';
+    }
+}
+
+function toggleNoCompletedTasksMessage() {
+    if (completedList.children.length === 0) {
+        noCompletedTasksMessage.style.display = 'block';
+    } else {
+        noCompletedTasksMessage.style.display = 'none';
+    }
+}
+
+function checkAndRemoveEmptyDateSpan(date) {
+    const itemsUnderDate = Array.from(completedList.children).filter(
+        item => item.getAttribute('data-date') === date
+    );
+
+    if (itemsUnderDate.length === 0) {
+        const dateLi = Array.from(completedList.children).find(
+            item => item.querySelector('span') && item.querySelector('span').innerText === date
+        );
+
+        if (dateLi) {
+            dateLi.remove();
+        }
     }
 }
 
@@ -138,30 +168,6 @@ list.addEventListener('click', function(event) {
         }
     }
 });
-
-function toggleNoCompletedTasksMessage() {
-    if (completedList.children.length === 0) {
-        noCompletedTasksMessage.style.display = 'block';
-    } else {
-        noCompletedTasksMessage.style.display = 'none';
-    }
-}
-
-function checkAndRemoveEmptyDateSpan(date) {
-    const itemsUnderDate = Array.from(completedList.children).filter(
-        item => item.getAttribute('data-date') === date
-    );
-
-    if (itemsUnderDate.length === 0) {
-        const dateLi = Array.from(completedList.children).find(
-            item => item.querySelector('span') && item.querySelector('span').innerText === date
-        );
-
-        if (dateLi) {
-            dateLi.remove();
-        }
-    }
-}
 
 /* -------------------------------
 'Delete All' button click events 

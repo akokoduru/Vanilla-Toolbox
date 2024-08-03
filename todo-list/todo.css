@@ -6,6 +6,23 @@
     padding: 0;
 }
 
+/* --- Home Icon Button --- */
+.home-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5em;
+    color: #25eb17;
+    text-decoration: none;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.home-icon:hover {
+    color: #1b8b12; /* Slightly darker green on hover */
+}
+
+/* -------------------------- */
+
 body {
     background: black;
     min-height: 100vh;
@@ -18,7 +35,6 @@ h2 {
 
 .container{
     width: 100%;
-    /* min-height: 100vh; */
     background: black;
     display: flex;
     align-items: flex-start;
@@ -29,6 +45,7 @@ h2 {
 .to-do-container, .completed-container {
     width: 100%;
     max-width: 450px;
+    min-width: 450px;
     min-height: 120px;
     background: black;
     outline: 3px solid #25eb17;

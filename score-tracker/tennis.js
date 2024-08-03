@@ -59,7 +59,7 @@ function reset() {
     for (let p of [p1, p2]) {
         p.score = 0;
         p.scoreDisplay.innerText = p.score;
-        p.scoreDisplay.style.color = 'black';
+        p.scoreDisplay.style.color = '#25eb17';
         p.button.disabled = false;
     }
 }
