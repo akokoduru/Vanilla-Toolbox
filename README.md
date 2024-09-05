@@ -1,7 +1,7 @@
 # Vanilla-Toolbox
 Collection of lightweight projects made using Vanilla JS
 
-Link to project: https://vanilla-toolbox.vercel.app/todo.html
+Link to project: https://vanilla-toolbox.vercel.app/
 
 ## Vanilla To-Do
 ### Description
