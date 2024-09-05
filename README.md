@@ -5,6 +5,7 @@ Link to project: https://vanilla-toolbox.vercel.app/
 
 ## Vanilla To-Do
 <img src="https://github.com/user-attachments/assets/874f0c90-3625-4929-9529-90346527c753" alt="Vanilla-Toolbox-gif-1" width="500"/>
+
 ### Description
 - Lightweight tool for managing your tasks and to-dos. Designed with simplicity and efficiency in mind, Vanilla To-Do allows you to easily add, track, and complete your daily tasks.
 ### Features
