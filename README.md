@@ -4,9 +4,7 @@ Collection of lightweight projects made using Vanilla JS
 Link to project: https://vanilla-toolbox.vercel.app/
 
 ## Vanilla To-Do
-
-https://github.com/user-attachments/assets/330621bf-b005-4474-bba8-af2481227d4a
-
+![ScreenRecording2024-09-05at2 34 49AM-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/6c7bcd55-db77-4b3e-bdfc-fe75c61a7151)
 ### Description
 - Lightweight tool for managing your tasks and to-dos. Designed with simplicity and efficiency in mind, Vanilla To-Do allows you to easily add, track, and complete your daily tasks.
 ### Features
